@@ -36,22 +36,30 @@ const CreateCompany = () => {
   };
 
   return (
-    <div className="custom-shadow mx-auto my-10 md:w-[400px] w-full rounded-xl p-5 bg-white text-gray-800">
-      <h1 className="text-3xl font-medium mb-5">Register Company</h1>
+    <div className="mx-auto my-10 md:w-[400px] w-full rounded-xl p-6 bg-slate-800 text-white shadow-lg">
+      <h1 className="text-3xl font-semibold text-purple-300 mb-5 text-center">
+        Register Company
+      </h1>
       <form onSubmit={handleSubmit} className="w-full">
         <fieldset className="mb-4">
-          <legend className="block mb-1 font-semibold text-sm text-gray-700">
+          <legend className="block mb-1 font-semibold text-sm text-purple-200">
             Enter company name
           </legend>
           <input
             type="text"
-            className="input input-primary w-full"
+            className="w-full bg-slate-700 text-white placeholder-gray-400 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-purple-500"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Type here"
+            required
           />
         </fieldset>
-        <button className="btn btn-primary mt-2 w-full">Submit</button>
+        <button
+          type="submit"
+          className="w-full mt-2 bg-purple-600 hover:bg-purple-700 text-white py-2 rounded-md transition-all duration-300"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );

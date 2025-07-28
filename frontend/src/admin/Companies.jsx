@@ -21,11 +21,11 @@ const Companies = () => {
   }, [searchTerm, companies]);
 
   return (
-    <div className="h-full w-full bg-gray-50 text-gray-800 p-5">
+    <div className="h-full w-full bg-slate-900 text-white p-5">
       <div className="flex items-center justify-between gap-2">
-        <label className="input input-bordered input-primary flex items-center gap-2 w-full max-w-xs">
+        <label className="flex items-center gap-2 w-full max-w-xs bg-slate-800 px-3 py-2 rounded-md shadow-md">
           <svg
-            className="h-5 w-5 opacity-50"
+            className="h-5 w-5 text-gray-400"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
           >
@@ -44,22 +44,22 @@ const Companies = () => {
             type="search"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="grow"
+            className="bg-transparent outline-none text-white placeholder-gray-400 w-full"
             placeholder="Search companies"
           />
         </label>
 
         <button
-          className="btn btn-primary px-6 py-2 font-semibold"
+          className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-6 rounded-md transition"
           onClick={() => navigate("/")}
         >
           Back
         </button>
       </div>
 
-      <div className="overflow-x-auto mt-5">
-        <table className="table table-zebra">
-          <thead className="bg-gray-100 text-gray-700 text-sm">
+      <div className="overflow-x-auto mt-6 rounded-lg shadow">
+        <table className="table w-full">
+          <thead className="bg-slate-800 text-purple-300 text-sm">
             <tr>
               <th>Company</th>
               <th>Website</th>
@@ -71,15 +71,20 @@ const Companies = () => {
           {filteredCompanies.length === 0 ? (
             <tbody>
               <tr>
-                <td colSpan="4" className="text-center py-5 text-gray-500">
+                <td colSpan="4" className="text-center py-5 text-gray-400">
                   No Company found.
                 </td>
               </tr>
             </tbody>
           ) : (
             <tbody>
-              {filteredCompanies.map((company) => (
-                <tr key={company._id}>
+              {filteredCompanies.map((company, index) => (
+                <tr
+                  key={company._id}
+                  className={`${
+                    index % 2 === 0 ? "bg-slate-900" : "bg-slate-800"
+                  } hover:bg-slate-700 transition`}
+                >
                   <td>
                     <div className="flex items-center gap-3">
                       <div className="avatar">
@@ -91,8 +96,10 @@ const Companies = () => {
                         </div>
                       </div>
                       <div>
-                        <div className="font-semibold">{company.name}</div>
-                        <div className="text-sm text-gray-500">
+                        <div className="font-semibold text-white">
+                          {company.name}
+                        </div>
+                        <div className="text-sm text-gray-400">
                           {company.location}
                         </div>
                       </div>
@@ -103,15 +110,17 @@ const Companies = () => {
                       href={company.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-primary underline"
+                      className="text-purple-400 underline"
                     >
                       Website
                     </a>
                   </td>
-                  <td>{format(company.createdAt, "MM/dd/yyyy")}</td>
+                  <td className="text-gray-300">
+                    {format(new Date(company.createdAt), "MM/dd/yyyy")}
+                  </td>
                   <td>
                     <Link
-                      className="btn btn-outline btn-primary"
+                      className="btn btn-outline text-purple-400 border-purple-500 hover:bg-purple-700 hover:text-white"
                       to={`/admin/companies/setup/${company._id}`}
                     >
                       Edit
