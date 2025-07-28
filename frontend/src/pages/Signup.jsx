@@ -23,7 +23,7 @@ const Signup = () => {
       setLoading(true)
 
       try {
-        const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/users/register`, {
+        const res = await fetch(`https://job-hunt-gknx.onrender.com/api/users/register`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
