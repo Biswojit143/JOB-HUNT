@@ -112,13 +112,13 @@ const JobDetails = () => {
 
         <div className="mt-6 flex flex-col text-lg gap-4 text-gray-300">
           <p>
-            Salary: <span className="text-purple-400">{job.salary}</span>
+            Salary: <span className="text-white">{job.salary}</span>
           </p>
           <p>
-            Experience: <span className="text-purple-400">{job.experience}</span> Year
+            Experience: <span className="text-white">{job.experience}</span> Year
           </p>
           <p>
-            Total Applicants: <span className="text-green-400">{job.applications.length}</span>
+            Total Applicants: <span className="text-white">{job.applications.length}</span>
           </p>
           <p>Posted Date: {job.createdAt.slice(0, 10)}</p>
         </div>

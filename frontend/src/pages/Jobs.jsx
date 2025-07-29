@@ -79,12 +79,12 @@ const Jobs = () => {
   return (
     <section className="p-5 flex flex-col lg:flex-row text-gray-800 dark:text-white min-h-screen bg-white dark:bg-gray-900">
       {/* Filter Section */}
-      <div className="p-5 w-full lg:w-[350px] bg-white dark:bg-gray-800 rounded-lg shadow">
+      <div className="p-5 w-full lg:w-[350px]">
         <div className="flex gap-3 flex-col mb-5">
           <h1 className="text-xl font-semibold">Filter Jobs</h1>
           <button
             onClick={clearFilters}
-            className="text-sm px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 transition"
+            className="text-sm px-4 py-2 bg-blue-800 text-white rounded-md hover:bg-blue-900 transition"
           >
             Clear Filters
           </button>
@@ -115,7 +115,7 @@ const Jobs = () => {
       </div>
 
       {/* Job Listing Section */}
-      <div className="h-screen overflow-y-auto p-5 flex-1">
+      <div className="p-5 flex-1">
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
           {filteredJobs.length > 0 ? (
             filteredJobs.map((job) => <JobCard key={job._id} job={job} />)

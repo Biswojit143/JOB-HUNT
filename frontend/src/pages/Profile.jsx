@@ -33,7 +33,7 @@ const Profile = () => {
   }
 
   return (
-    <section className="relative min-h-screen w-full px-5 bg-[#0f172a] text-white">
+    <section className="relative min-h-screen w-full px-5 bg-[#0f172a] text-white pt-30">
       {user && isOpen && <UpdateProfile setIsOpen={setIsOpen} user={user} />}
 
       <div className="max-w-3xl relative  mx-auto pt-4">
@@ -80,7 +80,7 @@ const Profile = () => {
               user.profile.skills.map((skill, index) => (
                 <span
                   key={index}
-                  className="bg-gradient-to-r from-purple-500 to-blue-600 text-white rounded-full px-4 py-1 text-sm shadow"
+                  className="bg-gradient-to-r bg-blue-800 text-white rounded-full px-4 py-1 text-sm shadow"
                 >
                   {skill}
                 </span>
@@ -104,7 +104,7 @@ const Profile = () => {
         </div>
 
         {/* Applied Jobs Table */}
-        <div className="mb-0">
+        <div className="mb-0 pb-30">
           <h1 className="text-2xl font-semibold mb-5 text-white">
             Applied Jobs
           </h1>
@@ -131,7 +131,7 @@ const Profile = () => {
                       {ap.job.company.name}
                     </td>
                     <td className="px-4 py-3">
-                      <span className="text-sm bg-purple-600 text-white rounded-full px-3 py-1">
+                      <span className="text-sm bg-blue-800 text-white rounded-full px-3 py-1">
                         {ap.status}
                       </span>
                     </td>

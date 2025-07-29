@@ -1,63 +1,81 @@
-import { FaRegBookmark } from 'react-icons/fa';
+import { FaRegBookmark, FaBookmark } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { formatDistance } from 'date-fns';
+import { useState } from 'react';
 
-const JobCard = ({ job }) => {
+const JobCard = ({ job, layout = 'grid' }) => {
   const navigate = useNavigate();
-
+  const [bookmarked, setBookmarked] = useState(false);
   const result = formatDistance(new Date(job.createdAt), new Date(), {
     addSuffix: true,
   });
 
   return (
-    <div className="flex flex-col gap-2 p-4 custom-shadow rounded-lg bg-white dark:bg-gray-800">
-      <div className="flex items-center justify-between mb-1 text-gray-600 dark:text-gray-400">
+    <div
+      className={`$ {
+        layout === 'horizontal' ? 'flex flex-row' : 'flex flex-col'
+      } gap-4 p-5 custom-shadow rounded-2xl bg-white dark:bg-gray-800 transition hover:shadow-lg mt-20`}
+    >
+      {/* Bookmark & Time */}
+      <div className="flex items-center justify-between w-full text-gray-500 dark:text-gray-400">
         <span className="text-sm">{result}</span>
-        <FaRegBookmark />
+        <button onClick={() => setBookmarked(!bookmarked)}>
+          {bookmarked ? (
+            <FaBookmark className="text-blue-600" />
+          ) : (
+            <FaRegBookmark />
+          )}
+        </button>
       </div>
 
-      <div className="flex gap-3 items-center">
+      {/* Top Content */}
+      <div className="flex items-center gap-4">
         <img
           src={job.company.logo || '/logo.jpg'}
           alt="company_logo"
-          className="w-10 h-10 rounded-lg object-cover"
+          className="w-12 h-12 rounded-lg object-cover"
         />
 
-        <div className="flex flex-col gap-1 items-start justify-center">
-          <h5 className="font-semibold leading-4 text-gray-800 dark:text-white">
+        <div className="flex flex-col">
+          <h5 className="font-semibold text-gray-800 dark:text-white">
             {job.company.name}
           </h5>
-          <h6 className="text-sm leading-3 text-gray-600 dark:text-gray-300">
+          <h6 className="text-sm text-gray-600 dark:text-gray-300">
             {job.location}
           </h6>
         </div>
       </div>
 
-      <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
+      {/* Title */}
+      <h2 className="text-xl font-bold text-gray-900 dark:text-white truncate">
         {job.title}
       </h2>
-      <p className="leading-5 text-sm text-gray-700 dark:text-gray-300">
-        {job.description}
+
+      {/* Description */}
+      <p className="text-sm text-gray-700 dark:text-gray-300 line-clamp-2">
+        {job.description || 'No description provided.'}
       </p>
 
-      <div className="flex items-center my-2 text-sm gap-3 font-semibold">
-        <span className="rounded-full px-4 py-1 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300">
+      {/* Tags */}
+      <div className="flex flex-wrap gap-2 my-3">
+        <span className="rounded-full px-3 py-1 text-sm text-white">
           {job.positions} positions
         </span>
-        <span className="rounded-full text-purple-600 px-3 py-1 border border-gray-300 dark:border-gray-600">
+        <span className="rounded-full px-3 py-1 text-sm text-white">
           {job.jobType}
         </span>
-        <span className="rounded-full text-green-600 px-3 py-1 border border-gray-300 dark:border-gray-600">
-          {job.salary}
+        <span className="rounded-full px-3 py-1 text-sm text-white">
+          ₹{job.salary}
         </span>
       </div>
 
+      {/* Action */}
       <button
         onClick={() => navigate(`/job/${job._id}`)}
         type="button"
-        className="text-sm rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-white"
+        className="bg-gradient-to-r  bg-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-5 py-2 rounded-full transition font-medium"
       >
-        Details
+        View Details
       </button>
     </div>
   );

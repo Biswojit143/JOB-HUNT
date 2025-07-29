@@ -8,13 +8,13 @@ const Navbar = ({ onLogout }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="custom-shadow z-50 sticky top-0 px-3 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-white">
-      <div className="max-w-7xl w-full mx-auto py-3 flex items-center justify-between">
+    <header className="fixed top-0 left-0 w-full z-50 bg-gray-50 dark:bg-gray-800 text-gray-800 dark:text-white shadow-md">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
         {/* Logo */}
         <Link to={"/"} className="flex items-center gap-2">
           <img src="/logo.jpg" alt="logo" className="w-8 h-8 rounded-lg" />
           <h2 className="text-2xl font-bold">
-            Job<span className="text-purple-600">Hunt</span>
+            Job<span className="text-blue-700">Hunt</span>
           </h2>
         </Link>
 
@@ -22,13 +22,13 @@ const Navbar = ({ onLogout }) => {
         <nav className="flex items-center gap-5">
           <ul className="flex items-center gap-5">
             <li className="hidden md:block">
-              <Link to={"/"} className="hover:text-purple-600 transition">Home</Link>
+              <Link to={"/"} className="hover:text-blue-800 transition">Home</Link>
             </li>
             <li>
-              <Link to={"/jobs"} className="hover:text-purple-600 transition">Jobs</Link>
+              <Link to={"/jobs"} className="hover:text-blue-800 transition">Jobs</Link>
             </li>
             <li>
-              <Link to={"/browse"} className="hover:text-purple-600 transition">Browse</Link>
+              <Link to={"/browse"} className="hover:text-blue-800 transition">Browse</Link>
             </li>
           </ul>
 
@@ -44,7 +44,7 @@ const Navbar = ({ onLogout }) => {
                 className="w-10 h-10 rounded-full object-cover"
               />
               {isOpen && (
-                <div className="absolute flex flex-col items-start gap-2 custom-shadow rounded-xl top-12 right-0 bg-white dark:bg-gray-800 text-gray-800 dark:text-white w-44 px-2 py-4">
+                <div className="absolute flex flex-col items-start gap-2 shadow-md rounded-xl top-12 right-0 bg-white dark:bg-gray-800 text-gray-800 dark:text-white w-44 px-2 py-4">
                   <Link
                     to={"/profile"}
                     className="flex gap-2 w-full p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 items-center"
